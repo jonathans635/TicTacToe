@@ -28,6 +28,7 @@ public class PlayGame {
             System.out.println("In which row would you like to mark?");
             int r=s.nextInt();
             move(r, c);
+            determineWinner();
         }
         System.out.println("Congratulations, "+determineWinner()+"!");
     }
@@ -54,18 +55,21 @@ public class PlayGame {
     }
 
     private String determineWinner(){
-        for (int col=0; col<5; col++){
-            for (int row=0; row<5; row++){
-                if (Arrays.toString(a[row]).contains("XXX"))
-                    return playerName;
-                else if (Arrays.toString(a[col]).contains("XXX"))
-                    return playerName;
-                else if (Arrays.toString(a[row]).contains("OOO"))
-                    return player2Name;
-                else if (Arrays.toString(a[col]).contains("OOO"))
-                    return player2Name;
-
+        for (int row=0; row<5; row++){
+            if (Arrays.toString(a[row]).contains("XXX"))
+                return playerName;
+            else if (Arrays.toString(a[row]).contains("OOO"))
+                return player2Name;
+        }
+        for (int i=0; i<5; i++){
+            String str="";
+            for (int x=0; x<5; x++){
+                str+=a[x][i];
             }
+            if (str.contains("XXX"))
+                return playerName;
+            if (str.contains("OOO"))
+                return player2Name;
         }
         if (a[0][1].equals("X")&&a[1][2].equals("X")&&a[2][3].equals("X"))
             return playerName;
