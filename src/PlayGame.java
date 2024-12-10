@@ -30,7 +30,9 @@ public class PlayGame {
             move(r, c);
             determineWinner();
         }
-        System.out.println("Congratulations, "+determineWinner()+"!");
+        if (determineWinner().equals("draw"))
+            System.out.println("Ok, nobody won.");
+        else System.out.println("Congratulations, "+determineWinner()+"!");
     }
 
     private void move(int col, int row){
@@ -119,6 +121,8 @@ public class PlayGame {
             return player2Name;
         else if (a[1][4].equals("X")&&a[3][2].equals("X")&&a[2][3].equals("X"))
             return playerName;
+        if (moveCount==24)
+            return "draw";
         return " ";
     }
 }
